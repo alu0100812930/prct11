@@ -40,4 +40,18 @@ end
   expect(libroeditado).to be_a EBook  
   expect(libroeditado.to_s).to be == "Castanigno, J. (2007). Técnicas, materiales y aplicaciones en nanotecnología. En J. Aguad & M. Gutiérrez (comps), La Nueva Bioquímica (pp. 189-191) (2) (3). Madrid: Espasa."
 end
+
+it "Se puede crear con lenguaje natural la bibliografía de un artículo de periódico" do
+     
+    diario = Newspaper.new() do
+        author :name => "Juan",
+        :surname => "Aguad"
+        title_article "Más cerca"
+        title_ "El Mercurio"
+        publishing_date "2008"
+        page  "4, Suplemento Deportes"
+    end
+    expect(diario).to be_a Newspaper
+    expect(diario.to_s).to be == "Aguad, J. (2008). Más cerca. El Mercurio, pp. 4, Suplemento Deportes."
+end
 end
