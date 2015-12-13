@@ -29,7 +29,7 @@ it "Se puede crear con lenguaje natural la bibliografía de un libro editado" do
    editor :name => "Manuel",
    :surname => "Gutiérrez"
    title_article "Técnicas, materiales y aplicaciones en nanotecnología"
-   pages "189-191"
+   page "189-191"
    title_ "La Nueva Bioquímica"
    publishing_date "2007"
    numeration :edition_number => 2,

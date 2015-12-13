@@ -1,4 +1,4 @@
-#Métodos generales
+#Palabras usadas en general
 
 def author params= {}
    author_name << params.fetch(:name)
@@ -33,3 +33,20 @@ end
  def publishing_house phouse
      self.p_house=phouse
  end
+ 
+ #Palabras para libros editados
+ 
+ def editor params = {}
+       editor_name << params.fetch(:name)
+editor_surname << params.fetch(:surname)
+ end
+ 
+ def title_article t_a
+     self.title_a = t_a
+ end
+ 
+ def page pag
+     self.pages=pag
+ end
+ 
+ 
