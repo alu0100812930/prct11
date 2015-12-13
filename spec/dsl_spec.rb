@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 require 'spec_helper'
 
 describe Dsl do
@@ -63,6 +65,7 @@ it "Se puede crear con lenguaje natural la bibliografÃ­a de un documento electrÃ
         :surname => "Straub"
         title_ "Pro Git 2009th Edition"
         publishing_date "2009"
+        numeration :edition_number => 5
         url_ "https:\\git-scm.com\book\en\v2"
         access_date "2008, 22 de Mayo"
         publishing_place "Tenerife"
