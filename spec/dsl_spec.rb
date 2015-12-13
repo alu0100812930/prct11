@@ -1,11 +1,23 @@
 require 'spec_helper'
 
 describe Dsl do
-  it 'has a version number' do
-    expect(Dsl::VERSION).not_to be nil
-  end
+it "Se puede crear con lenguaje natural la bibliografía de un libro" do
+    libro = Book.new() do
+   author :name => "Dave",
+   :surname => "Thomas"
+   author :name => "Albert",
+   :surname => "Hunt"
+   author :name => "Chad",
+   :surname => "Fowler"
+   title "El Observador"
+   publishing_date "2009"
+   numeration :edition_number => 4,
+   :volume => 1
+   publishing_place "Ohio"
+   publishing_house "Pragmatic Bookshelf"
+end
+expect(libro).to be_a Book
+expect(libro.to_s).to be == "2008, 22 de Mayo].\nThomas, D. & Hunt, A. & Fowler, C. (2013). Programming Ruby 1.9 & 2.0: The Pragmatic Programmers Guide (4) (1). Ohio: Pragmatic Bookshelf.\n"
 
-  it 'does something useful' do
-    expect(false).to eq(true)
-  end
+end
 end
