@@ -54,4 +54,22 @@ it "Se puede crear con lenguaje natural la bibliografía de un artículo de peri
     expect(diario).to be_a Newspaper
     expect(diario.to_s).to be == "Aguad, J. (2008). Más cerca. El Mercurio, pp. 4, Suplemento Deportes."
 end
+
+it "Se puede crear con lenguaje natural la bibliografía de un documento electrónico" do
+    edoc = EDoc.new() do
+        author :name => "Scott",
+        :surname => "Chacon"
+        author :name => "Bob",
+        :surname => "Straub"
+        title_ "Pro Git 2009th Edition"
+        publishing_date "2009"
+        url_ "https:\\git-scm.com\book\en\v2"
+        access_date "2008, 22 de Mayo"
+        publishing_place "Tenerife"
+        publishing_house "Drago"
+        medium_ "En línea"
+    end
+    expect(edoc).to be_a EDoc
+    expect(edoc.to_s).to be == "Chacon, S. & Straub, B. (2009). Pro Git 2009th Edition (5), [En línea]. Tenerife: Drago. Disponible en: https:\\git-scm.com\book\en\v2 [2008, 22 de Mayo]."
+end
 end
