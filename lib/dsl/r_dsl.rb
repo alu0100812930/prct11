@@ -8,8 +8,8 @@ author_surname << params.fetch(:surname)
 end
 
 
-def title_ t
-   self.title = t
+def title t
+   self.title_ = t
 end
  
  
@@ -47,8 +47,8 @@ editor_surname << params.fetch(:surname)
      self.title_a = t_a
  end
  
- def page pag
-     self.pages=pag
+ def pages pag
+     self.page=pag
  end
  
  #Palabras para documentos electrónicos

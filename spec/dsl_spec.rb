@@ -11,7 +11,7 @@ it "Se puede crear con lenguaje natural la bibliografía de un libro" do
    :surname => "Hunt"
    author :name => "Chad",
    :surname => "Fowler"
-   title_ "Programming Ruby 1.9 & 2.0: The Pragmatic Programmers Guide"
+   title "Programming Ruby 1.9 & 2.0: The Pragmatic Programmers Guide"
    publishing_date "2009"
    numeration :edition_number => 4,
    :volume => 1
@@ -31,8 +31,8 @@ it "Se puede crear con lenguaje natural la bibliografía de un libro editado" do
    editor :name => "Manuel",
    :surname => "Gutiérrez"
    title_article "Técnicas, materiales y aplicaciones en nanotecnología"
-   page "189-191"
-   title_ "La Nueva Bioquímica"
+   pages "189-191"
+   title "La Nueva Bioquímica"
    publishing_date "2007"
    numeration :edition_number => 2,
    :volume => 3
@@ -49,9 +49,9 @@ it "Se puede crear con lenguaje natural la bibliografía de un artículo de peri
         author :name => "Juan",
         :surname => "Aguad"
         title_article "Más cerca"
-        title_ "El Mercurio"
+        title "El Mercurio"
         publishing_date "2008"
-        page  "4, Suplemento Deportes"
+        pages  "4, Suplemento Deportes"
     end
     expect(diario).to be_a Newspaper
     expect(diario.to_s).to be == "Aguad, J. (2008). Más cerca. El Mercurio, pp. 4, Suplemento Deportes."
@@ -63,7 +63,7 @@ it "Se puede crear con lenguaje natural la bibliografía de un documento electr�
         :surname => "Chacon"
         author :name => "Bob",
         :surname => "Straub"
-        title_ "Pro Git 2009th Edition"
+        title "Pro Git 2009th Edition"
         publishing_date "2009"
         numeration :edition_number => 5
         url_ "https:\\git-scm.com\book\en\v2"
@@ -74,5 +74,14 @@ it "Se puede crear con lenguaje natural la bibliografía de un documento electr�
     end
     expect(edoc).to be_a EDoc
     expect(edoc.to_s).to be == "Chacon, S. & Straub, B. (2009). Pro Git 2009th Edition (5), [En línea]. Tenerife: Drago. Disponible en: https:\\git-scm.com\book\en\v2 [2008, 22 de Mayo]."
+end
+
+it "Se puede crear con lenguaje natural una lista de referencias bibliográficas de distintos tipos" do
+    lista = RList.new() do
+        book libro
+        editbook libroeditado
+            newspaper diario
+            edocument edoc
+    end
 end
 end

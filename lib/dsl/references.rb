@@ -4,7 +4,7 @@ class Biblioref
   include Comparable 
   attr_accessor :author_name #Nombres de autores
       attr_accessor :author_surname #Apellidos de autores
-      attr_accessor :title #Título de publicación
+      attr_accessor :title_ #Título de publicación
       attr_accessor :p_house #Casa editorial
       attr_accessor :p_place #Lugar de publicación
       attr_accessor :edit_num #Numero de edición
@@ -27,7 +27,7 @@ else
 end
   i=i+1
 end
-      "#{fullnames} (#{self.p_date}). #{self.title} (#{self.edit_num}) (#{self.volume}). #{self.p_place}: #{self.p_house}."
+      "#{fullnames} (#{self.p_date}). #{self.title_} (#{self.edit_num}) (#{self.volume}). #{self.p_place}: #{self.p_house}."
     end 
     
      def <=> (another)
@@ -51,7 +51,7 @@ end
 
 def <=>(another)
   if self.author_surname== another.author_surname && self.p_date==another.p_date
-    self.title<=>another.title
+    self.title_<=>another.title_
   else
       super
     end
@@ -62,7 +62,7 @@ class EBook < Biblioref
     attr_accessor :title_a, #Título de artículo
     :editor_name, #Nombres de editores de artículo
     :editor_surname, #Apellidos de editores de artículo
-    :pages #Paginas de artículo
+    :page #Paginas de artículo
     def initialize(params = {}, &block)
         super
         self.editor_name = []
@@ -93,7 +93,7 @@ elsif i == self.editor_name.count-2
 end
   i=i+1
 end
-      "#{fullnames} (#{self.p_date}). #{self.title_a}. En #{editors} (comps), #{self.title} (pp. #{self.pages}) (#{self.edit_num}) (#{self.volume}). #{self.p_place}: #{self.p_house}."
+      "#{fullnames} (#{self.p_date}). #{self.title_a}. En #{editors} (comps), #{self.title_} (pp. #{self.page}) (#{self.edit_num}) (#{self.volume}). #{self.p_place}: #{self.p_house}."
     end 
     
    def <=>(another)
@@ -108,7 +108,7 @@ end
 
 class Newspaper < Biblioref
   attr_accessor :title_a, #Título de artículo
-  :pages #Paginación
+  :page #Paginación
   def initialize(params = {}, &block)
     super
     instance_eval &block
@@ -125,7 +125,7 @@ else
 end
   i=i+1
 end
-      "#{fullnames} (#{self.p_date}). #{self.title_a}. #{self.title}, pp. #{self.pages}."
+      "#{fullnames} (#{self.p_date}). #{self.title_a}. #{self.title_}, pp. #{self.page}."
    end
      def <=>(another)
         if self.author_surname == another.author_surname && self.p_date==another.p_date
@@ -158,16 +158,16 @@ end
   i=i+1
 end
  if self.medium =="En línea"
-      "#{fullnames} (#{self.p_date}). #{self.title} (#{self.edit_num}), [#{self.medium}]. #{self.p_place}: #{self.p_house}. Disponible en: #{self.url} [#{self.a_date}]."
+      "#{fullnames} (#{self.p_date}). #{self.title_} (#{self.edit_num}), [#{self.medium}]. #{self.p_place}: #{self.p_house}. Disponible en: #{self.url} [#{self.a_date}]."
  else
-     "#{fullnames} (#{self.p_date}). #{self.title} (#{self.edit_num}), [#{self.medium}]. #{self.p_place}: #{self.p_house} [#{self.a_date}]."
+     "#{fullnames} (#{self.p_date}). #{self.title_} (#{self.edit_num}), [#{self.medium}]. #{self.p_place}: #{self.p_house} [#{self.a_date}]."
  end
 end
 
 def <=>(another)
   if self.author_surname == another.author_surname && self.p_date==another.p_date
     self.author_surname<=>another.author_surname
-    self.title<=>another.title
+    self.title_<=>another.title_
   else
       super
     end
