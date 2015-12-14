@@ -4,7 +4,7 @@ require 'spec_helper'
 
 describe Dsl do
 it "Se puede crear con lenguaje natural la bibliografía de un libro" do
-    libro = Book.new() do
+    @libro = Book.new() do
    author :name => "Dave",
    :surname => "Thomas"
    author :name => "Albert",
@@ -18,8 +18,8 @@ it "Se puede crear con lenguaje natural la bibliografía de un libro" do
    publishing_place "Ohio"
    publishing_house "Pragmatic Bookshelf"
 end
-expect(libro).to be_a Book
-expect(libro.to_s).to be == "Thomas, D. & Hunt, A. & Fowler, C. (2009). Programming Ruby 1.9 & 2.0: The Pragmatic Programmers Guide (4) (1). Ohio: Pragmatic Bookshelf."
+expect(@libro).to be_a Book
+expect(@libro.to_s).to be == "Thomas, D. & Hunt, A. & Fowler, C. (2009). Programming Ruby 1.9 & 2.0: The Pragmatic Programmers Guide (4) (1). Ohio: Pragmatic Bookshelf."
 end
 
 it "Se puede crear con lenguaje natural la bibliografía de un libro editado" do
@@ -77,11 +77,68 @@ it "Se puede crear con lenguaje natural la bibliografía de un documento electr�
 end
 
 it "Se puede crear con lenguaje natural una lista de referencias bibliográficas de distintos tipos" do
-    lista = RList.new() do
-        book libro
-        editbook libroeditado
-            newspaper diario
-            edocument edoc
+      libro = Book.new() do
+   author :name => "Dave",
+   :surname => "Thomas"
+   author :name => "Albert",
+   :surname => "Hunt"
+   author :name => "Chad",
+   :surname => "Fowler"
+   title "Programming Ruby 1.9 & 2.0: The Pragmatic Programmers Guide"
+   publishing_date "2009"
+   numeration :edition_number => 4,
+   :volume => 1
+   publishing_place "Ohio"
+   publishing_house "Pragmatic Bookshelf"
+end
+
+libroeditado = EBook.new() do
+   author :name => "Javier",
+   :surname => "Castanigno"
+   editor :name => "Juan",
+   :surname => "Aguad"
+   editor :name => "Manuel",
+   :surname => "Gutiérrez"
+   title_article "Técnicas, materiales y aplicaciones en nanotecnología"
+   pages "189-191"
+   title "La Nueva Bioquímica"
+   publishing_date "2007"
+   numeration :edition_number => 2,
+   :volume => 3
+   publishing_place "Madrid"
+   publishing_house "Espasa"
+end
+
+diario = Newspaper.new() do
+        author :name => "Juan",
+        :surname => "Aguad"
+        title_article "Más cerca"
+        title "El Mercurio"
+        publishing_date "2008"
+        pages  "4, Suplemento Deportes"
     end
+    
+     edoc = EDoc.new() do
+        author :name => "Scott",
+        :surname => "Chacon"
+        author :name => "Bob",
+        :surname => "Straub"
+        title "Pro Git 2009th Edition"
+        publishing_date "2009"
+        numeration :edition_number => 5
+        url_ "https:\\git-scm.com\book\en\v2"
+        access_date "2008, 22 de Mayo"
+        publishing_place "Tenerife"
+        publishing_house "Drago"
+        medium_ "En línea"
+    end
+
+    lista = RList.new() do
+        editbook libroeditado
+        book libro
+        newspaper diario
+        edocument edoc
+    end
+    expect(lista.to_s).to be == "Aguad, J. (2008). Más cerca. El Mercurio, pp. 4, Suplemento Deportes.\nCastanigno, J. (2007). Técnicas, materiales y aplicaciones en nanotecnología. En J. Aguad & M. Gutiérrez (comps), La Nueva Bioquímica (pp. 189-191) (2) (3). Madrid: Espasa.\nChacon, S. & Straub, B. (2009). Pro Git 2009th Edition (5), [En línea]. Tenerife: Drago. Disponible en: https:\\git-scm.com\book\en\v2 [2008, 22 de Mayo].\nThomas, D. & Hunt, A. & Fowler, C. (2009). Programming Ruby 1.9 & 2.0: The Pragmatic Programmers Guide (4) (1). Ohio: Pragmatic Bookshelf.\n"
 end
 end
