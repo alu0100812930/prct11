@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["alu0100812930@ull.edu.es"]
 
   if spec.respond_to?(:metadata)
-    spec.metadata['allowed_push_host'] = 'http://rubygems.org'
+    spec.metadata['allowed_push_host'] = 'https://rubygems.org'
   end
 
   spec.summary       = %q{Una DSL para la creación de referencias bibliográficas en formato APA y de listas que las almacenen}
