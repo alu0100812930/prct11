@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'dsl/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "dsl"
+  spec.name          = "dsl_alu0100812930"
   spec.version       = Dsl::VERSION
   spec.authors       = ["Mauricio José Orta Rodríguez"]
   spec.email         = ["alu0100812930@ull.edu.es"]
